@@ -1,8 +1,10 @@
 class CommentsController < ApplicationController
+  # before_filter :load_post
   # GET /comments
   # GET /comments.json
   def index
-    @comments = Comment.all
+    @post = Post.find(params[:post_id])
+    @comments = @post.comments
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +15,10 @@ class CommentsController < ApplicationController
   # GET /comments/1
   # GET /comments/1.json
   def show
-    @comment = Comment.find(params[:id])
+     @comments = @post.comments
+
+    # @comments = @post.comments
+    # @comment = @post.comments.build
 
     respond_to do |format|
       format.html # show.html.erb
@@ -80,4 +85,10 @@ class CommentsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  # private
+
+  # def load_post
+  #   @post = Post.find(params[:id])
+  # end
 end
