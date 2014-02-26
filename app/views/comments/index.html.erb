@@ -1,9 +1,19 @@
-<h1>Listing comments</h1>
+<h1>Comments for <%= @post.title %></h1>
 
 <% @comments.each do |comment| %>
     <p>
+    <b>Comment</b>
+    <br>
     <%= comment.body %>
     <br>
+      <blockquote>
+        <b>Reply</b>
+        <br>
+        <% comment.replies.each do |reply| %>
+        <%= reply.body %>
+        <% end %>
+      </blockquote>
+
     <%= link_to 'Show', post_comment_path(@post, comment) %>
     <%= link_to 'Edit', edit_post_comment_path(@post, comment) %>
     <%= link_to 'Destroy', post_comment_path(@post, comment), method: :delete, data: { confirm: 'Are you sure?' } %>

@@ -5,6 +5,7 @@ class CommentsController < ApplicationController
   def index
     @post = Post.find(params[:post_id])
     @comments = @post.comments
+    @replies = Reply.all
 
     respond_to do |format|
       format.html # index.html.erb
